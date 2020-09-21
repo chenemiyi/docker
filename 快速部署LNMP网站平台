@@ -1,0 +1,18 @@
+Dockerfile创建镜像
+
+自定义网络
+docker network create lnmp
+创建Mysql容器
+docker run -d \
+--name lnmp_mysql \
+--net lnmp \
+--mount src=mysql-vol,dst=/var/lib/mysql \
+-e MYSQL_ROOT_PASSWORD=123456 -e MYSQL_DATABASE=wordpress mysql:5.7 --character-set-server=utf8
+创建PHP容器
+docker run -d --name lnmp_php --net lnmp --mount src=wwwroot,dst=/wwwroot php:v1
+创建Nginx容器 (主机端口：容器端口)
+docker run -d --name lnmp_nginx --net lnmp -p 88:80 \
+--mount type=bind,src=$(pwd)/nginx.conf,dst=/usr/local/nginx/conf/nginx.conf --mount src=wwwroot,dst=/wwwroot nginx:v1
+网站发布目录  /var/lib/docker/volumes/wwwroot/_data
+\cp -R /root/wordpress/*  /var/lib/docker/volumes/wwwroot/_data/
+网页访问 http://localhost:88
