@@ -6,7 +6,7 @@ docker network create lnmp
 docker run -d \
 --name lnmp_mysql \
 --net lnmp \
---mount src=mysql-vol,dst=/var/lib/mysql \
+(--mount src=mysql-vol,dst=/var/lib/mysql \) 宿主机挂载到容器未实现
 -e MYSQL_ROOT_PASSWORD=123456 -e MYSQL_DATABASE=wordpress mysql:5.7 --character-set-server=utf8
 创建PHP容器
 docker run -d --name lnmp_php --net lnmp --mount src=wwwroot,dst=/wwwroot php:v1
