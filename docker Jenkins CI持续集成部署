@@ -1,0 +1,14 @@
+部署git代码版本仓库
+# yum install git -y
+# useradd git
+# passwd git
+# su - git
+$ mkdir demo.git
+$ cd demo.git
+$ git --bare init
+初始化空的 Git 版本库于 /home/git/demo.git/
+$ ls
+branches  config  description  HEAD  hooks  info  objects  refs
+
+docker-jenkins访问该仓库
+# git clone git@192.168.182.101:/home/git/demo.git
