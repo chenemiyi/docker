@@ -12,3 +12,66 @@ branches  config  description  HEAD  hooks  info  objects  refs
 
 docker-jenkins访问该仓库
 # git clone git@192.168.182.101:/home/git/demo.git
+# git clone https://github.com/chenemiyi/docker.git
+# cat .git/config
+[core]
+        repositoryformatversion = 0
+        filemode = true
+        bare = false
+        logallrefupdates = true
+[remote "origin"]
+        url = git@192.168.182.101:/home/git/tomcat-java-demo.git
+        fetch = +refs/heads/*:refs/remotes/origin/*
+[branch "master"]
+        remote = origin
+        merge = refs/heads/master
+# git add .    将该文件添加到暂存区
+# git commit -m "all"   【双引号】将暂存区里的改动给提交到本地的版本库
+# git push origin master 
+
+jenkins环境部署 
+部署jdk环境及maven
+# tar xf jdk-8u45-linux-x64.tar.gz
+# mv jdk1.8.0_45/ /usr/local/jdk
+# vim /etc/profile
+JAVA_HOME=/usr/local/jdk
+PATH=$PATH:$JAVA_HOME/bin
+# source /etc/profile
+# tar zxf apache-maven-3.5.0-bin.tar.gz
+# mv apache-maven-3.5.0 /usr/local/maven
+# tar zxf apache-tomcat-8.5.38.tar.gz
+# mv apache-tomcat-8.0.46 /usr/local/jenkins
+# rm -rf /usr/local/tomcat-jenkins/webapps/*
+# mv jenkins.war /usr/local/jenkins/webapps/ROOT.war
+# cd /usr/local/jenkins/bin/
+# ./startup.sh
+
+构建Tomcat基础镜像，并推送到harbor镜像库
+# cd tomcat
+# vim Dockerfile-tomcat
+FROM centos:7
+MAINTAINER www.cnblogs.com/kaye/
+ 
+ENV VERSION=8.5.38
+ 
+RUN yum install java-1.8.0-openjdk wget curl unzip iproute net-tools -y && \
+    yum clean all && \
+    rm -rf /var/cache/yum/*
+RUN wget http://mirrors.shu.edu.cn/apache/tomcat/tomcat-8/v${VERSION}/bin/apachetomcat-${VERSION}.tar.gz && \
+    tar zxf apache-tomcat-${VERSION}.tar.gz && \
+    mv apache-tomcat-${VERSION} /usr/local/tomcat && \
+    rm -rf apache-tomcat-${VERSION}.tar.gz /usr/local/tomcat/webapps/* && \
+    mkdir /usr/local/tomcat/webapps/test && \
+    echo "ok" > /usr/local/tomcat/webapps/test/status.html && \
+    sed -i '1a JAVA_OPTS="-Djava.security.egd=file:/dev/./urandom"' /usr/local/tomcat/bin/catalina.sh && \
+    ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+ 
+ENV PATH $PATH:/usr/local/tomcat/bin
+ 
+EXPOSE 8080
+CMD ["catalina.sh", "run"]
+# docker build -f Dockerfile-tomcat .
+
+
+
+
