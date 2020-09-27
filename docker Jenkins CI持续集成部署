@@ -41,7 +41,7 @@ PATH=$PATH:$JAVA_HOME/bin
 # mv apache-maven-3.5.0 /usr/local/maven
 # tar zxf apache-tomcat-8.5.38.tar.gz
 # mv apache-tomcat-8.0.46 /usr/local/jenkins
-# rm -rf /usr/local/tomcat-jenkins/webapps/*
+# rm -rf /usr/local/jenkins/webapps/*
 # mv jenkins.war /usr/local/jenkins/webapps/ROOT.war
 # cd /usr/local/jenkins/bin/
 # ./startup.sh
