@@ -8,8 +8,8 @@ chmod +x docker-compose-Linux-x86_64   安装docker-compose
 mv docker-compose-Linux-x86_64 /usr/bin/docker-compose
 # cat /etc/docker/daemon.json
 {
-  "registry-mirrors": ["https://j1hpf2j7.mirror.aliyuncs.com"],
-  "insecure-registries": ["https://192.168.182.101"]
+  "registry-mirrors": ["http://j1hpf2j7.mirror.aliyuncs.com"],
+  "insecure-registries": ["http://192.168.182.101"]
 }
 # ./prepare
 # ./install.sh
