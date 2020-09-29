@@ -72,6 +72,11 @@ EXPOSE 8080
 CMD ["catalina.sh", "run"]
 # docker build -f Dockerfile-tomcat .
 
+秘钥认证，需要将jenkins上生成的公钥发送到git服务器上，然后将jenkins上的生成的私钥内容粘贴到下图Key中，这样jenkins就可以免交互的拉取git仓库中的代码了
+jenkins# ssh-keygen
+jenkins# ssh-copy-id git@192.168.182.101 (git服务器IP)
+
+
 
 
 
