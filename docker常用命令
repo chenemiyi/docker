@@ -38,3 +38,7 @@ linux
 (# docker history nginx:v1.0 --no-trunc  查看完整输出)
 
 # docker search nginx
+
+
+# docker image prune  清理镜像
+
