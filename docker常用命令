@@ -1,0 +1,40 @@
+docker run -it ubuntu /bin/bash
+-i: 交互式操作
+-t: 终端
+
+docker run -itd --name ubuntu-test ubuntu /bin/bash
+-d 参数默认不会进入容器
+
+ docker attach 1e560fca3906 
+ 如果从这个容器退出，会
+ 
+ [root@izbp1i4dkyavklohj96seaz ~]# docker images -a
+REPOSITORY   TAG       IMAGE ID       CREATED       SIZE
+nginx        latest    f6d0b4767a6c   2 weeks ago   133MB
+nginx        v1.0      f6d0b4767a6c   2 weeks ago   133MB
+导致容器的停止
+ 
+ docker exec -it 243c32535da7 /bin/bash
+ 如果从这个容器退出，容器不会停止
+  
+  docker pull ubuntu:18.04
+  （docker pull registry.hub.docker.com/ubuntu:18.04）
+  
+  # docker tag nginx:latest nginx:v1.0
+[root@izbp1i4dkyavklohj96seaz ~]# docker images -a
+REPOSITORY   TAG       IMAGE ID       CREATED       SIZE
+nginx        latest    f6d0b4767a6c   2 weeks ago   133MB
+nginx        v1.0      f6d0b4767a6c   2 weeks ago   133MB
+
+# docker inspect -f  {{".Os"}} nginx:v1.0  inspect查看某一个字段信息，字段前加.
+
+[root@izbp1i4dkyavklohj96seaz ~]# docker inspect -f  {{".Architecture"}} nginx:v1.0
+amd64
+[root@izbp1i4dkyavklohj96seaz ~]# docker inspect -f  {{".Os"}} nginx:v1.0
+linux
+
+
+# docker history nginx:v1.0
+(# docker history nginx:v1.0 --no-trunc  查看完整输出)
+
+# docker search nginx
