@@ -42,3 +42,13 @@ linux
 
 # docker image prune  清理镜像
 
+
+# docker save -o bao/nginx.tar nginx:latest  存出镜像
+
+
+上传镜像：
+（前提）
+# docker login
+# docker tag nginx:latest 18004460727/test:v1.0  tag和dockerhub标签一致
+# docker push 18004460727/test:v1.0  
+（登录信息在/root/.docker/config.json）
