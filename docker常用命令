@@ -44,6 +44,9 @@ linux
 
 
 # docker save -o bao/nginx.tar nginx:latest  存出镜像
+# docker export -o  *.tar 容器ID  导出容器
+# docker load -i nginx.tar 导入镜像
+
 
 
 上传镜像：
@@ -52,3 +55,16 @@ linux
 # docker tag nginx:latest 18004460727/test:v1.0  tag和dockerhub标签一致
 # docker push 18004460727/test:v1.0  
 （登录信息在/root/.docker/config.json）
+
+docker ps -qa 查看所有容器ID
+
+# docker pause 2fba22726921  暂停容器
+
+[root@izbp1i4dkyavklohj96seaz ~]# docker ps -a
+CONTAINER ID   IMAGE     COMMAND                  CREATED        STATUS                   PORTS     NAMES
+2fba22726921   nginx     "/docker-entrypoint.…"   26 hours ago   Up 13 seconds (Paused)   80/tcp    hopeful_black
+
+
+docker container prune  自动清除掉所有处于停止状态的容器
+
+
