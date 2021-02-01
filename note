@@ -7,4 +7,14 @@ test
 4dbc47e655dbaf0202ff2e4646679ec1c4fdf59b7c0433b86bf0fb20af8dd73d  backingFsBlockDev  test
 76fd7d535abbf4625fdd5751268a6db0dcdb50a3b8e5748cd1151b3a83da34dc  metadata.db
 
+# docker run -it --name test-mysql -v yilin:/tmp -e MYSQL_ROOT_PASSWORD=123456 -p 3306:3306 mysql:latest   容器内写入，yilin/_data同步（不论up exited状态）
+# docker inspect 75e4bb49aef0
+"HostConfig": {
+            "Binds": [
+                "yilin:/tmp"
+            ],
+
+使用--volumes-from参数所挂载数据卷的容器自身并不需要保持在运行状态。
+如果删除了挂载的容器，数据卷并不会被自动删除。如果要删除一个数据卷，必须在删除最后一个还挂载着它的容器时显式使用docker rm -v命令来指定同时删除关联的容器。
+
 
