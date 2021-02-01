@@ -1,0 +1,10 @@
+private-docker. com/ubuntu来说，private-docker.com是注册服务器地址（Registry），ubuntu是仓库名。
+
+# docker volume create -d local test   创建数据卷（本地目录的路径必须是绝对路径，容器内路径可以为相对路径）
+[root@izbp1i4dkyavklohj96seaz ~]# docker volume create -d local test
+test
+[root@izbp1i4dkyavklohj96seaz ~]# ls /var/lib/docker/volumes/
+4dbc47e655dbaf0202ff2e4646679ec1c4fdf59b7c0433b86bf0fb20af8dd73d  backingFsBlockDev  test
+76fd7d535abbf4625fdd5751268a6db0dcdb50a3b8e5748cd1151b3a83da34dc  metadata.db
+
+
