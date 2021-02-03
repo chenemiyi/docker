@@ -6,13 +6,13 @@ docker run -itd --name ubuntu-test ubuntu /bin/bash
 -d 参数默认不会进入容器
 
  docker attach 1e560fca3906 
- 如果从这个容器退出，会
+ 如果从这个容器退出，会导致容器的停止
  
  [root@izbp1i4dkyavklohj96seaz ~]# docker images -a
 REPOSITORY   TAG       IMAGE ID       CREATED       SIZE
 nginx        latest    f6d0b4767a6c   2 weeks ago   133MB
 nginx        v1.0      f6d0b4767a6c   2 weeks ago   133MB
-导致容器的停止
+
  
  docker exec -it 243c32535da7 /bin/bash
  如果从这个容器退出，容器不会停止
