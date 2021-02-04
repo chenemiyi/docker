@@ -38,6 +38,7 @@ CONTAINER ID   IMAGE          COMMAND                  CREATED         STATUS   
 # docker port 46161a60fada  查看当前映射的端口配置
 3306/tcp -> 127.0.0.1:3306  容器 - > 本地主机
 
+# apt-get update 容器安装软件包
 
 
  
