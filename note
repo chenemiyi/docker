@@ -19,5 +19,25 @@ test
 --volumes-from参数 从多个容器挂载多个数据卷，还可以从其他已经挂载了容器卷的容器来挂载数据卷  所挂载数据卷的容器自身并不需要保持在运行状态
 如果删除了挂载的容器，数据卷并不会被自动删除。如果要删除一个数据卷，必须在删除最后一个还挂载着它的容器时显式使用docker rm -v命令来指定同时删除关联的容器
 
-docker run -it -d -P  nginx:latest   -P  Docker会随机映射一个49000～49900的端口到内部容器开放的网络端口
+docker run -it -d -P  nginx:latest   -P  Docker会随机映射一个49000～49900的端口到内部容器开放的网络端口 
+（本地主机的49153被映射到了容器的80端口）
+[root@izbp1i4dkyavklohj96seaz ~]# docker ps -a
+CONTAINER ID   IMAGE          COMMAND                  CREATED        STATUS        PORTS                   NAMES
+64da89ba485c   nginx:latest   "/docker-entrypoint.…"   19 hours ago   Up 19 hours   0.0.0.0:49153->80/tcp   silly_visvesvaraya
 
+# docker run -d -p 127.0.0.1:3306:3306  -e MYSQL_ROOT_PASSWORD=123456  mysql:latest  指定映射使用一个特定地址
+[root@izbp1i4dkyavklohj96seaz ~]# docker ps -a
+CONTAINER ID   IMAGE          COMMAND                  CREATED         STATUS                     PORTS                                 NAMES
+46161a60fada   mysql:latest   "docker-entrypoint.s…"   9 seconds ago   Up 9 seconds               127.0.0.1:3306->3306/tcp, 33060/tcp   xenodochial_wescoff
+
+# docker run -d -p 127.0.0.1::4000 nginx:latest  映射到指定地址的任意端口
+[root@izbp1i4dkyavklohj96seaz ~]# docker ps -a
+CONTAINER ID   IMAGE          COMMAND                  CREATED         STATUS         PORTS                               NAMES
+0262512e69e6   nginx:latest   "/docker-entrypoint.…"   9 seconds ago   Up 8 seconds   80/tcp, 127.0.0.1:49153->4000/tcp   inspiring_archimedes
+
+# docker port 46161a60fada  查看当前映射的端口配置
+3306/tcp -> 127.0.0.1:3306  容器 - > 本地主机
+
+
+
+ 
