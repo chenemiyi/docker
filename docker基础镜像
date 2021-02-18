@@ -1,0 +1,4 @@
+busybox：集成了一百多个最常用Linux命令（如cat、echo、grep、mount、telnet等）的精简工具箱
+
+Alpine：比BusyBox功能上更完善，提供了包管理工具apk查询和安装软件包
+
