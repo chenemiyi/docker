@@ -102,3 +102,12 @@ class QuickstartUser(HttpUser):
 --link标签将一个应用容器连接至MySQL容器
 # docker run --name=some-mysql --link=some-mysql:mysql -d application-that-users-mysql
 
+
+# docker top 67dfadd3d33d 查看容器资源使用情况
+[root@hecs-x-medium-2-linux-20210408102029 ~]# docker top 67
+UID                 PID                 PPID                C                   STIME               TTY                 TIME                CMD
+root                4012                3993                0                   17:20               pts/0               00:00:00            bash
+
+
+# docker cp 67dfadd3d33d:/yilin/test.html /root  容器/yilin/test.html拷贝到宿主机/root下
+
