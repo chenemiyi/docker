@@ -33,6 +33,9 @@ amd64
 [root@izbp1i4dkyavklohj96seaz ~]# docker inspect -f  {{".Os"}} nginx:v1.0
 linux
 
+
+# docker cp 67dfadd3d33d:/yilin/test.html /root 将容器内的/yilin/test.html拷贝到宿主机/root下
+
 # docker inspect 3d98e436cd79  查看容器详细信息
 # docker top 3d98e436cd79 查看容器内进程信息
 
