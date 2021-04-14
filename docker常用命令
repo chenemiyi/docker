@@ -116,6 +116,17 @@ CONTAINER ID   NAME          CPU %     MEM USAGE / LIMIT     MEM %     NET I/O  
 67dfadd3d33d   cool_agnesi   0.00%     2.414MiB / 1.794GiB   0.13%     656B / 0B   2.02MB / 0B   1
 
 
+具名挂载和匿名挂载
 
+# docker run -d -P -v nginx:/etc/nginx nginx  具名挂载
+[root@hecs-x-medium-2-linux-20210408102029 default]# docker volume ls
+DRIVER    VOLUME NAME
+local     nginx
+local     portainer_data
+local     ylcommit
+[root@hecs-x-medium-2-linux-20210408102029 default]# docker run -d -P -v nginx:/etc/nginx nginx
+33eaa8da9f6e0a9c0fec787c60c26aca97f985b5877e51d422ee28421608e388
+
+# docker run -d -P -v /etc/nginx:/etc/nginx nginx 匿名挂载
 
 
