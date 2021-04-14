@@ -111,3 +111,11 @@ root                4012                3993                0                   
 
 # docker cp 67dfadd3d33d:/yilin/test.html /root  容器/yilin/test.html拷贝到宿主机/root下
 
+# docker stats  查看容器资源使用情况
+CONTAINER ID   NAME          CPU %     MEM USAGE / LIMIT     MEM %     NET I/O     BLOCK I/O     PIDS
+67dfadd3d33d   cool_agnesi   0.00%     2.414MiB / 1.794GiB   0.13%     656B / 0B   2.02MB / 0B   1
+
+
+
+
+
